@@ -11,7 +11,6 @@
   <ItemGroup>
     <Folder Include="Behaviors\" />
     <Folder Include="Resources\" />
-    <Folder Include="Views\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>
