@@ -4,9 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bank2Pdf.Views"
+        xmlns:components="clr-namespace:Bank2Pdf.Components"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Conversor txt a excel con formato - JAMZ"
+        Height="450"
+        Width="800">
+
+    <Grid Margin="20"
+          Background="Transparent">
+
+        <Border BorderBrush="Gray"
+                BorderThickness="2"
+                CornerRadius="8"
+                Padding="20"
+                Background="Transparent"
+                AllowDrop="True">
+
+            <i:Interaction.Triggers>
+
+                <i:EventTrigger EventName="DragOver">
+                    <i:InvokeCommandAction
+                        Command="{Binding DragOverCommand}"
+                        PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+
+                <i:EventTrigger EventName="Drop">
+                    <i:InvokeCommandAction
+                        Command="{Binding DropCommand}"
+                        PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+
+            </i:Interaction.Triggers>
+
+            <StackPanel>
+
+                <TextBlock Text="Convertir archivo .txt a excel"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 20"
+                           FontWeight="Bold"/>
+
+                <components:FileList />
+            </StackPanel>
+
+        </Border>
+
     </Grid>
+
 </Window>
