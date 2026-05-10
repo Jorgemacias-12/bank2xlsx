@@ -1,5 +1,9 @@
-﻿using Bank2Pdf.Models;
+﻿using Bank2Pdf.Helpers;
+using Bank2Pdf.Models;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Bank2Pdf.Services.Exporters;
 
@@ -143,5 +147,92 @@ public class ExcelExporter
     {
         worksheet.Columns()
             .AdjustToContents();
+    }
+
+    public async Task ExportStreamingAsync(
+        ParsedFile parsedFile,
+        string outputPath)
+    {
+        if (parsedFile is null)
+            return;
+
+        if (string.IsNullOrWhiteSpace(outputPath))
+            return;
+
+        await Task.Run(() =>
+        {
+            using SpreadsheetDocument document =
+                SpreadsheetDocument.Create(
+                    outputPath,
+                    SpreadsheetDocumentType.Workbook);
+
+            WorkbookPart workbookPart =
+                document.AddWorkbookPart();
+
+            workbookPart.Workbook =
+                new Workbook();
+
+            WorksheetPart worksheetPart =
+                workbookPart.AddNewPart<WorksheetPart>();
+
+            worksheetPart.Worksheet =
+                new Worksheet(new SheetData());
+
+            SheetData sheetData =
+                worksheetPart.Worksheet
+                    .GetFirstChild<SheetData>()!;
+
+            Sheets sheets =
+                workbookPart.Workbook
+                    .AppendChild(new Sheets());
+
+            Sheet sheet = new()
+            {
+                Id = workbookPart.GetIdOfPart(worksheetPart),
+                SheetId = 1,
+                Name = "Transacciones"
+            };
+
+            sheets.Append(sheet);
+
+            int rowIndex = 1;
+
+            // Headers
+            sheetData.Append(
+                Excel.CreateRow(
+                    parsedFile.Headers,
+                    rowIndex++)
+            );
+
+            // Rows
+            foreach (List<string> row in parsedFile.Rows)
+            {
+                sheetData.Append(
+                    Excel.CreateRow(
+                        row,
+                        rowIndex++)
+                );
+            }
+
+            // Empty spacing before footer
+            rowIndex++;
+
+            // Footer
+            foreach (FooterItem footer in parsedFile.Footer)
+            {
+                sheetData.Append(
+                    Excel.CreateRow(
+                        new List<string>
+                        {
+                        footer.Key,
+                        footer.Value
+                        },
+                        rowIndex++)
+                );
+            }
+
+            worksheetPart.Worksheet.Save();
+            workbookPart.Workbook.Save();
+        });
     }
 }
