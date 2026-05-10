@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Bank2Pdf.Models
 {
-    partial class DroppedFile : ObservableObject
+    public partial class DroppedFile : ObservableObject
     {
         [ObservableProperty]
         private string name = "";
