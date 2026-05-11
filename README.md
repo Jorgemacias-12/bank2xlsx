@@ -27,19 +27,10 @@ The `ExcelExporter` component receives the cleaned table and writes a `.xlsx` (o
 
 1. Launch the application (WPF UI).
 2. Load the exported TXT file from the bank.
-3. The app selects or suggests a parser based on the file contents.
+3. The app selects a parser based on the file contents.
 4. The parser produces a normalized tabular model (rows/columns).
 5. Export to Excel using the exporter.
 
-## Build & publish
-
-The project targets modern .NET (see GitHub Actions workflow). To build/publish locally:
-
-- Restore and publish for Windows x64 self-contained:
-
-  `dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true`
-
-This produces a single-file executable suitable for distribution.
 
 ## Adding or improving parsers
 
@@ -51,9 +42,10 @@ This produces a single-file executable suitable for distribution.
 
 Contributions are welcome. If you add a parser, include example input files (sanitized) and expected output so the behavior is reproducible.
 
-## License
-
-This repository does not include an explicit license file. Add a license if you intend to publish or share widely.
-
 ---
+
+## Translations
+
+A Spanish translation of this README is available in `README.es-MX.md`. That file is a translation of this English README; keep both files in sync when you make updates.
+
  

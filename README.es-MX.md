@@ -27,19 +27,10 @@ El componente `ExcelExporter` recibe la tabla limpia y genera el `.xlsx`. Los pa
 
 1. Iniciar la aplicación (interfaz WPF).
 2. Cargar el archivo TXT exportado desde el banco.
-3. La aplicación selecciona o sugiere un parser según el contenido del archivo.
+3. La aplicación selecciona el parser según el contenido del archivo.
 4. El parser produce un modelo tabular normalizado (filas/columnas).
 5. Exportar a Excel con el exportador.
 
-## Compilar y publicar
-
-El proyecto apunta a .NET moderno (ver el flujo de trabajo de GitHub Actions). Para compilar/publicar localmente:
-
-- Restaurar y publicar para Windows x64 auto-contenido:
-
-  `dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true`
-
-Esto produce un ejecutable de un solo archivo apto para distribución.
 
 ## Añadir o mejorar parsers
 
@@ -51,10 +42,7 @@ Esto produce un ejecutable de un solo archivo apto para distribución.
 
 Se aceptan contribuciones. Si agregas un parser, incluye archivos de ejemplo (anonimizados) y la salida esperada para que el comportamiento sea reproducible.
 
-## Licencia
 
-Este repositorio incluye un archivo `LICENSE` con la licencia seleccionada. Añade o modifica la licencia si lo consideras necesario.
+## Uso básico 
 
----
-
-Uso básico: abrir la aplicación, cargar el TXT, el programa detectará el formato, limpiará los datos y exportará a Excel.
+abrir la aplicación, cargar el TXT, el programa detectará el formato, limpiará los datos y exportará a Excel.
