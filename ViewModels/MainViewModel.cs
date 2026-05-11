@@ -12,6 +12,10 @@ namespace Bank2Pdf.ViewModels
     {
         private readonly FileParserService _parserService;
 
+        public event Action? RequestMinimize;
+        public event Action? RequestToggleMaximize;
+        public event Action? RequestClose;
+
         public ObservableCollection<DroppedFile> Files { get; } = new();
 
         public MainViewModel()
@@ -19,9 +23,42 @@ namespace Bank2Pdf.ViewModels
             _parserService = new FileParserService();
         }
 
+        [ObservableProperty]
+        private bool isDragging;
+
+        [ObservableProperty]
+        private bool isMaximized;
+
+        public string MaximizeIcon =>
+            IsMaximized
+                ? "\uE923"
+                : "\uE922";
+
+        [RelayCommand]
+        private void Minimize()
+        {
+            RequestMinimize?.Invoke();
+        }
+
+        [RelayCommand]
+        private void ToggleMaximize()
+        {
+            IsMaximized = !IsMaximized;
+            RequestToggleMaximize?.Invoke();
+        }
+
+        [RelayCommand]
+        private void Close()
+        {
+            RequestClose?.Invoke();
+        }
+        
+
         [RelayCommand]
         private void DragOver(DragEventArgs e)
         {
+            IsDragging = true;
+
             if (!e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 e.Effects = DragDropEffects.None;
@@ -46,6 +83,8 @@ namespace Bank2Pdf.ViewModels
         [RelayCommand]
         private void Drop(DragEventArgs e)
         {
+            IsDragging = false;
+
             if (!e.Data.GetDataPresent(DataFormats.FileDrop))
                 return;
 

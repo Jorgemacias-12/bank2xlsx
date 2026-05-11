@@ -6,49 +6,130 @@
         xmlns:local="clr-namespace:Bank2Pdf.Views"
         xmlns:components="clr-namespace:Bank2Pdf.Components"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"
         Title="Conversor txt a excel con formato - JAMZ"
         Height="450"
-        Width="800">
+        Width="800"
+        MinHeight="450"
+        MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="CanResize">
+    <shell:WindowChrome.WindowChrome>
 
-    <Grid Margin="20"
-          Background="Transparent">
+        <shell:WindowChrome
+        CaptionHeight="40"
+        ResizeBorderThickness="6"
+        CornerRadius="0"
+        GlassFrameThickness="0"
+        UseAeroCaptionButtons="False"/>
 
-        <Border BorderBrush="Gray"
-                BorderThickness="2"
-                CornerRadius="8"
-                Padding="20"
-                Background="Transparent"
-                AllowDrop="True">
+    </shell:WindowChrome.WindowChrome>
 
-            <i:Interaction.Triggers>
+    <Grid Background="#1E1E1E">
 
-                <i:EventTrigger EventName="DragOver">
-                    <i:InvokeCommandAction
-                        Command="{Binding DragOverCommand}"
-                        PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                <i:EventTrigger EventName="Drop">
-                    <i:InvokeCommandAction
-                        Command="{Binding DropCommand}"
-                        PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
+        <!-- TOPBAR -->
+        <Border Grid.Row="0"
+        Background="#252526">
 
-            </i:Interaction.Triggers>
+            <Grid>
 
-            <StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Convertir archivo .txt a excel"
-                           FontSize="20"
-                           HorizontalAlignment="Center"
-                           Margin="0 0 0 20"
-                           FontWeight="Bold"/>
+                <!-- TITLE -->
+                <TextBlock Text="Bank2Pdf"
+                   VerticalAlignment="Center"
+                   Margin="12 0"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   Foreground="White"/>
 
-                <components:FileList />
-            </StackPanel>
+                <!-- WINDOW CONTROLS -->
+                <StackPanel Grid.Column="1"
+                    Orientation="Horizontal">
+
+                    <!-- MINIMIZE -->
+                    <Button Style="{StaticResource WindowControlButton}"
+                    shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                    Command="{Binding MinimizeCommand}"
+                    Content="&#xE921;"/>
+
+                    <!-- MAXIMIZE / RESTORE -->
+                    <Button Style="{StaticResource WindowControlButton}"
+                    shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                    Command="{Binding ToggleMaximizeCommand}"
+                    Content="{Binding MaximizeIcon}"/>
+
+                    <!-- CLOSE -->
+                    <Button Style="{StaticResource CloseWindowButton}"
+                    shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                    Command="{Binding CloseCommand}"
+                    Content="&#xE8BB;"/>
+
+                </StackPanel>
+
+            </Grid>
 
         </Border>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="1"
+              Margin="20">
+
+            <Border BorderBrush="#3C3C3C"
+                    BorderThickness="2"
+                    CornerRadius="8"
+                    Padding="20"
+                    Background="#252526"
+                    AllowDrop="True">
+
+                <i:Interaction.Triggers>
+
+                    <i:EventTrigger EventName="DragOver">
+                        <i:InvokeCommandAction
+                            Command="{Binding DragOverCommand}"
+                            PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+
+                    <i:EventTrigger EventName="Drop">
+                        <i:InvokeCommandAction
+                            Command="{Binding DropCommand}"
+                            PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+
+                </i:Interaction.Triggers>
+
+                <StackPanel>
+
+                    <TextBlock Text="Convertir archivo .txt a excel"
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 20"
+                               FontWeight="Bold"
+                               Foreground="White"/>
+
+                    <TextBlock Text="Arrastra y suelta tus archivos .txt aquí"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 30"
+                               Foreground="#9E9E9E"/>
+
+                    <components:FileList />
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
 
     </Grid>
 

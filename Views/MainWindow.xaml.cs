@@ -3,16 +3,43 @@ using System.Windows;
 
 namespace Bank2Pdf.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = new MainViewModel();
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(
+            object sender,
+            RoutedEventArgs e)
+        {
+            if (DataContext is not MainViewModel vm)
+                return;
+
+            vm.RequestMinimize += HandleMinimize;
+            vm.RequestToggleMaximize += HandleToggleMaximize;
+            vm.RequestClose += HandleClose;
+        }
+
+        private void HandleMinimize()
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void HandleToggleMaximize()
+        {
+            WindowState =
+                WindowState == WindowState.Maximized
+                    ? WindowState.Normal
+                    : WindowState.Maximized;
+        }
+
+        private void HandleClose()
+        {
+            Close();
         }
     }
 }
