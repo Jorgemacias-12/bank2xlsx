@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 env:
   APP_NAME: Bank2xlsx
   DOTNET_VERSION: net10.0-windows
