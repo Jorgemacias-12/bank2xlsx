@@ -7,7 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <Company>Jorge Macias</Company>
-    <Description>Este programa permite exportar datos desde un .txt descargados desde Santander a Excel a petición.</Description>
+    <Description>Este programa permite exportar datos desde un .txt descargados desde Santander a
+      Excel a petición.</Description>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
     <Copyright>Jorge Macias</Copyright>
     <PackageProjectUrl>https://github.com/Jorgemacias-12/bank2xlsx</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Jorgemacias-12/bank2xlsx</RepositoryUrl>
