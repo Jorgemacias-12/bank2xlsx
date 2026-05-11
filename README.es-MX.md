@@ -1,4 +1,4 @@
-# Bank2xlsx
+# ![Bank2xlsx icono](Resources/bank2xlsx.ico) Bank2xlsx 
 
 Una herramienta para convertir exportaciones de transacciones bancarias en TXT mal formateadas en tablas Excel bien estructuradas. Este repositorio nació a petición de un compañero que necesitaba transformar los archivos que descarga del banco de la empresa en una hoja de cálculo utilizable.
 
