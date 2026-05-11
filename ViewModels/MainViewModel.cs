@@ -10,13 +10,13 @@ namespace Bank2Pdf.ViewModels
 {
     partial class MainViewModel : ObservableObject
     {
-        private readonly FileParser _parserService;
+        private readonly FileParserService _parserService;
 
         public ObservableCollection<DroppedFile> Files { get; } = new();
 
         public MainViewModel()
         {
-            _parserService = new FileParser();
+            _parserService = new FileParserService();
         }
 
         [RelayCommand]
@@ -79,13 +79,11 @@ namespace Bank2Pdf.ViewModels
             if (file is null)
                 return;
 
-            MessageBox.Show("");
-
             file.Status = "Convirtiendo...";
 
             try
             {
-                await _parserService.ParseAsync(file.FullPath);
+                await _parserService.ParseStreamingAsync(file);
 
                 file.Status = "Completado";
             }
