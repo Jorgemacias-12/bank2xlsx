@@ -1,6 +1,10 @@
-﻿using Bank2Pdf.Models;
+﻿using Bank2Pdf.Helpers;
+using Bank2Pdf.Models;
 using Bank2Pdf.Services.Exporters;
 using Bank2Pdf.Services.Parsers;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System.IO;
 
 namespace Bank2Pdf.Services
@@ -65,6 +69,33 @@ namespace Bank2Pdf.Services
             string outputPath = Path.ChangeExtension(droppedFile.FullPath, ".xlsx");
 
             await _excelExporter.ExportAsync(workbook, outputPath);
+        }
+
+         public async Task ParseStreamingAsync(DroppedFile droppedFile)
+        {
+            string[] lines = 
+                await File.ReadAllLinesAsync(droppedFile.FullPath);
+
+            var parsedFile = await Task.Run(() =>
+            {
+                return new ParsedFile
+                {
+                    SourceFile = droppedFile,
+                    Headers = _headerParser.Parse(lines),
+                    Rows = _transactionParser.Parse(lines),
+                    Footer = _footerParser.Parse(lines)
+                };
+            });
+
+            string outputPath =
+                Path.ChangeExtension(
+                    droppedFile.FullPath,
+                    ".xlsx");
+
+            await _excelExporter.ExportStreamingAsync(
+                parsedFile,
+                outputPath
+            );
         }
     }
 }
