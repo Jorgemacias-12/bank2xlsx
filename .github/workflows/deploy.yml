@@ -5,6 +5,11 @@ on:
     tags:
       - 'v*'
 
+env:
+  APP_NAME: Bank2xlsx
+  DOTNET_VERSION: net10.0-windows
+  RUNTIME: win-x64
+
 jobs:
 
   build:
@@ -19,7 +24,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore
         run: dotnet restore
@@ -28,21 +33,22 @@ jobs:
         run: >
           dotnet publish
           -c Release
-          -r win-x64
+          -r ${{ env.RUNTIME }}
           --self-contained true
           /p:PublishSingleFile=true
           /p:IncludeNativeLibrariesForSelfExtract=true
 
       - name: Zip Release
-        run: Compress-Archive `
-          -Path bin/Release/net9.0-windows/win-x64/publish/Bank2Pdf.exe `
-          -DestinationPath Bank2Pdf.zip
+        run: >
+          Compress-Archive
+          -Path bin/Release/${{ env.DOTNET_VERSION }}/${{ env.RUNTIME }}/publish/${{ env.APP_NAME }}.exe
+          -DestinationPath ${{ env.APP_NAME }}.zip
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            bin/Release/net9.0-windows/win-x64/publish/Bank2Pdf.exe
-            Bank2Pdf.zip
+            bin/Release/${{ env.DOTNET_VERSION }}/${{ env.RUNTIME }}/publish/${{ env.APP_NAME }}.exe
+            ${{ env.APP_NAME }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
