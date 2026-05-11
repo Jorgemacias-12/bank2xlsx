@@ -1,4 +1,5 @@
-﻿using Bank2Pdf.Models;
+﻿using Bank2Pdf.Helpers;
+using Bank2Pdf.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,12 @@ namespace Bank2Pdf.Services.Parsers
 {
     class FooterParser
     {
-        private static readonly Regex FooterRegex =
-            new(@"([A-Z.\s]+?)\s+(\$?\s*[\d,]+(?:\.\d{2})?)");
-    
+        private static readonly Regex ValueRegex =
+            new(
+                @"\$?[\d,]+(?:\.\d{2})?$",
+                RegexOptions.Compiled
+            );
+
         public List<FooterItem> Parse(string[] lines)
         {
             List<FooterItem> items = [];
@@ -18,27 +22,40 @@ namespace Bank2Pdf.Services.Parsers
             IEnumerable<string> footerLines =
                 lines.TakeLast(2);
 
-            foreach(string line in footerLines)
+            foreach (string line in footerLines)
             {
-                MatchCollection matches =
-                    FooterRegex.Matches(line);
+                bool isCurrency =
+                    line.Contains('$');
 
-                foreach(Match match in matches)
+                string normalizedLine =
+                    line.Replace("$", "");
+
+                string[] tokens =
+                    normalizedLine.Split(
+                        ' ',
+                        StringSplitOptions.RemoveEmptyEntries);
+
+                List<string> currentKey = [];
+
+                foreach (string token in tokens)
                 {
-                    items.Add(new FooterItem
+                    if (Number.IsNumeric(token))
                     {
-                        Key = match.Groups[1]
-                            .Value
-                            .Trim(),
+                        items.Add(new FooterItem
+                        {
+                            Key = string.Join(' ', currentKey),
+                            Value = isCurrency
+                                ? $"${token}"
+                                : token,
+                            IsCurrency = isCurrency
+                        });
 
-                        Value = match.Groups[2]
-                            .Value
-                            .Trim(),
-
-                        IsCurrency = match.Groups[2]
-                            .Value
-                            .Contains("$")
-                    });
+                        currentKey.Clear();
+                    }
+                    else
+                    {
+                        currentKey.Add(token);
+                    }
                 }
             }
 
