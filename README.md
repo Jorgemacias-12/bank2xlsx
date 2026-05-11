@@ -49,3 +49,5 @@ Contributions are welcome. If you add a parser, include example input files (san
 A Spanish translation of this README is available in `README.es-MX.md`. That file is a translation of this English README; keep both files in sync when you make updates.
 
  
+### Spanish version
+[Versión en español](README.es-MX.md)
