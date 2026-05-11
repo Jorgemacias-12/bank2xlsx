@@ -4,6 +4,7 @@ using ClosedXML.Excel;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.Diagnostics;
 
 namespace Bank2Pdf.Services.Exporters;
 
@@ -233,6 +234,8 @@ public class ExcelExporter
 
             worksheetPart.Worksheet.Save();
             workbookPart.Workbook.Save();
+
+            Process.Start("explorer.exe", outputPath);
         });
     }
 }
