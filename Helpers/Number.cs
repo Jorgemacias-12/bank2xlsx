@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Bank2Pdf.Helpers
+﻿namespace Bank2Pdf.Helpers
 {
     internal class Number
     {

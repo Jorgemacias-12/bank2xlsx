@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Bank2Pdf.Models
+﻿namespace Bank2Pdf.Models
 {
     public class ParsedFile
     {
