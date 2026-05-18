@@ -1,11 +1,8 @@
-﻿using Bank2Pdf.Helpers;
-using Bank2Pdf.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Bank2xlsx.Helpers;
+using Bank2xlsx.Models;
 using System.Text.RegularExpressions;
 
-namespace Bank2Pdf.Services.Parsers
+namespace Bank2xlsx.Services.Parsers
 {
     class FooterParser
     {

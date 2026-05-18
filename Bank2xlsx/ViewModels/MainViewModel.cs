@@ -1,12 +1,12 @@
-﻿using Bank2Pdf.Models;
-using Bank2Pdf.Services;
+﻿using Bank2xlsx.Models;
+using Bank2xlsx.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
-namespace Bank2Pdf.ViewModels
+namespace Bank2xlsx.ViewModels
 {
     partial class MainViewModel : ObservableObject
     {

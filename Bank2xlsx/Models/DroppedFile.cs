@@ -1,7 +1,7 @@
-﻿using Bank2Pdf.Helpers;
+﻿using Bank2xlsx.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Bank2Pdf.Models
+namespace Bank2xlsx.Models
 {
     public partial class DroppedFile : ObservableObject
     {

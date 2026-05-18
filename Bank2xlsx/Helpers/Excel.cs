@@ -1,6 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 
-namespace Bank2Pdf.Helpers
+namespace Bank2xlsx.Helpers
 {
     internal class Excel
     {

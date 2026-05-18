@@ -1,4 +1,4 @@
-﻿namespace Bank2Pdf.Models
+﻿namespace Bank2xlsx.Models
 {
     public class FooterItem
     {

@@ -1,4 +1,4 @@
-﻿namespace Bank2Pdf.Helpers;
+﻿namespace Bank2xlsx.Helpers;
 
 public static class FileSizeFormatter
 {

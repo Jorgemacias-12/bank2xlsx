@@ -1,4 +1,4 @@
-﻿namespace Bank2Pdf.Helpers
+﻿namespace Bank2xlsx.Helpers
 {
     internal class Number
     {

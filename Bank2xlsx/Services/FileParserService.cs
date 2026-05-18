@@ -1,8 +1,9 @@
-﻿using Bank2Pdf.Services.Exporters;
-using Bank2Pdf.Services.Parsers;
+﻿using Bank2xlsx.Models;
+using Bank2xlsx.Services.Exporters;
+using Bank2xlsx.Services.Parsers;
 using System.IO;
 
-namespace Bank2Pdf.Services
+namespace Bank2xlsx.Services
 {
     /// <summary>
     /// Servicio encargado de orquestar el proceso completo de lectura,

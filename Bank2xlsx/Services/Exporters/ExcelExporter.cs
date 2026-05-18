@@ -1,12 +1,12 @@
-﻿using Bank2Pdf.Helpers;
-using Bank2Pdf.Models;
+﻿using Bank2xlsx.Helpers;
+using Bank2xlsx.Models;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Diagnostics;
 
-namespace Bank2Pdf.Services.Exporters;
+namespace Bank2xlsx.Services.Exporters;
 
 public class ExcelExporter
 {

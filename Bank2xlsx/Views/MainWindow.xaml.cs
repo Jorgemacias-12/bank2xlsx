@@ -1,7 +1,7 @@
-﻿using Bank2Pdf.ViewModels;
+﻿using Bank2xlsx.ViewModels;
 using System.Windows;
 
-namespace Bank2Pdf.Views
+namespace Bank2xlsx.Views
 {
     public partial class MainWindow : Window
     {

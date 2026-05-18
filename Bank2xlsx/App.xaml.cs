@@ -1,11 +1,9 @@
-﻿using Bank2Pdf.ViewModels;
-using Bank2Pdf.Views;
+﻿using Bank2xlsx.ViewModels;
+using Bank2xlsx.Views;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
-namespace Bank2Pdf
+namespace Bank2xlsx
 {
     /// <summary>
     /// Interaction logic for App.xaml
