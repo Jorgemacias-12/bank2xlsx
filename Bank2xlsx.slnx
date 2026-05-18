@@ -1,5 +1,7 @@
 <Solution>
+  <Project Path="Bank2xlsx.Core/Bank2xlsx.Core.csproj" Id="54e0c649-c139-4c8d-9ce6-48582d585cc1" />
+  <Project Path="Bank2xlsx.Shared/Bank2xlsx.Shared.csproj" Id="8cbc9594-ef5f-412b-a71b-5ebf6ee29736" />
   <Project Path="Bank2xlsx/Bank2xlsx.csproj" />
-  <Project Path="Tests/Tests.csproj" Id="8b9cd9ae-5b4c-4a85-800d-ed78e646b57a" />
-  <Project Path="Updater/Updater.csproj" Id="03108df8-691e-4154-84e3-83c46f1c490d" />
+  <Project Path="Tests/Bank2xlsx.Tests.csproj" Id="8b9cd9ae-5b4c-4a85-800d-ed78e646b57a" />
+  <Project Path="Updater/Bank2xlsx.Updater.csproj" Id="03108df8-691e-4154-84e3-83c46f1c490d" />
 </Solution>
