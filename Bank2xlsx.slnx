@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Bank2xlsx/Bank2xlsx.csproj" />
+  <Project Path="Updater/Updater.csproj" Id="03108df8-691e-4154-84e3-83c46f1c490d" />
 </Solution>
